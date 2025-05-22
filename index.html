@@ -4,41 +4,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="sigine_maroc.css">
+  <link rel="icon" href="img/Agence Signée Maroc logo.png">
   <title>Signee Maroc</title>
 </head>
 <body>
+
+  <!-- Banner Image -->
   <img src="img/Signee_maroc.jpg" alt="Signee_maroc" />
 
+  <!-- Video -->
   <video src="vid/WhatsApp Video 2025-05-21 at 16.51.39_3745f7b9.mp4" controls></video>
 
+  <!-- Background + Form -->
   <div class="image-container">
-  <img class="background-img" src="img/Signee_maroc_2.jpg" alt="Signee_maroc_2" />
+    <img class="background-img" src="img/Signee_maroc_2.jpg" alt="Signee_maroc_2" />
 
-  
-  <form class="form-overlay" action="">
-    <label>
-      <input type="text" placeholder="الاسم الكامل" />
-    </label>
-    <label>
-      <input type="text" placeholder="الهاتف" />
-    </label>
-    <label>
-      <input type="text" placeholder="المدينة" />
-    </label>
-    <button type="submit">إرسال</button>
-  </form>
+    <!-- FORM -->
+    <form class="form-overlay" 
+          action="https://script.google.com/macros/s/AKfycbw9Igxu7awmWCj4Omo3RwrpIqhK9FEHOTucBO5zMFByOmy4iJbH1_U5WArV2oYkEVVV/exec"
+          method="POST"
+          target="hidden_iframe"
+          onsubmit="submitted = true;">
+      
+      <label>
+        <input name="name" type="text" placeholder="الاسم الكامل" required />
+      </label>
+      <label>
+        <input name="phone" id="phone" type="tel" placeholder="الهاتف" pattern="\d{10}" maxlength="10" required />
+      </label>
+      <label>
+        <input name="city" type="text" placeholder="المدينة" required />
+      </label>
+      <button type="submit">إرسال</button>
+    </form>
 
-  <!-- Social icons -->
-  <a href="https://www.facebook.com/share/18zrSzuNWi/">
-    <img class="facebook social-icon" src="img/facebook (2).png" alt="facebook icon" />
-  </a>
-  <a href="https://www.instagram.com/agence_signee_maroc?igsh=djY2ajJpYmUxMGtq">
-    <img class="instagram social-icon" src="img/instagram (2).png" alt="instagram icon" />
-  </a>
-  <a href="https://www.tiktok.com/@agencesigneemaroc?_t=ZM-8wXxH1mMZQz&_r=1">
-    <img class="tiktok social-icon" src="img/tiktok (1).png" alt="tiktok icon" />
-  </a>
-</div>
+    <!-- Hidden Iframe for silent submission -->
+    <iframe name="hidden_iframe" onload="showSuccess()" style="display:none;"></iframe>
+
+    <!-- Social Links -->
+    <a href="https://www.facebook.com/share/18zrSzuNWi/">
+      <img class="facebook social-icon" src="img/facebook (2).png" alt="facebook icon" />
+    </a>
+    <a href="https://www.instagram.com/agence_signee_maroc?igsh=djY2ajJpYmUxMGtq">
+      <img class="instagram social-icon" src="img/instagram (2).png" alt="instagram icon" />
+    </a>
+    <a href="https://www.tiktok.com/@agencesigneemaroc?_t=ZM-8wXxH1mMZQz&_r=1">
+      <img class="tiktok social-icon" src="img/tiktok (1).png" alt="tiktok icon" />
+    </a>
+  </div>
+
+  <!-- Validation Script -->
+  <script>
+    let submitted = false;
+
+    function showSuccess() {
+      if (submitted) {
+        alert("تم إرسال معلوماتك بنجاح!");
+      }
+    }
+
+    const form = document.querySelector(".form-overlay");
+    const phoneInput = document.getElementById("phone");
+
+    form.addEventListener("submit", function(e) {
+      const phone = phoneInput.value;
+
+      // Check if phone is 10 digits
+      if (!/^\d{10}$/.test(phone)) {
+        e.preventDefault();
+        alert("الرجاء إدخال رقم هاتف مكون من 10 أرقام.");
+        return;
+      }
+
+      // Check for duplicates
+      let existingPhones = JSON.parse(localStorage.getItem("phones") || "[]");
+
+      if (existingPhones.includes(phone)) {
+        e.preventDefault();
+        alert("هذا الرقم موجود سابقًا.");
+        return;
+      }
+
+      // Save the new phone number
+      existingPhones.push(phone);
+      localStorage.setItem("phones", JSON.stringify(existingPhones));
+
+      submitted = true;
+    });
+  </script>
 
 </body>
 </html>
