@@ -101,9 +101,9 @@
 }
 
 .form-overlay button {
-  margin-left: 50%;
+  margin-left: 40%;
   width: 50%;
-  height: 20px;
+  padding: 5px;
   background-color: #E81C37;
   color: white;
   border: none;
