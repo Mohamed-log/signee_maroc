@@ -1,4 +1,4 @@
- body {
+body {
       margin: 0;
       padding: 0;
       display: flex;
@@ -25,89 +25,96 @@
       display: block;
     }
 
-    /* Shared style for social icons */
+    /* Social icons styles - now larger for mobile */
     .social-icon {
       position: absolute;
       top: 88%;
-      width: 30px;
+      width: 40px; /* Increased from 25px to 40px */
+      height: 40px;
+      transition: transform 0.3s ease;
     }
 
     .facebook {
-      left: 54%;
+      left: 50%;
       transform: translate(-50%, -50%);
     }
 
     .instagram {
-      left: calc(54% + 50px); 
+      left: calc(55% + 50px); /* Adjusted spacing */
       transform: translate(-50%, -50%);
     }
 
     .tiktok {
-      left: calc(54% + 100px); 
+      left: calc(60% + 100px); /* Adjusted spacing */
       transform: translate(-50%, -50%);
     }
 
     img {
       width: 100%;
-      max-width: 375px; /* For phone */
+      max-width: 480px;
       height: auto;
       display: block;
     }
-
-    @media (min-width: 380px) {
-
+    
+    /* Desktop styles */
+    @media (min-width: 481px) {
       img {
         max-width: 800px; 
       }
 
       .social-icon {
-        width: 70px;
+        width: 60px;
+        height: 60px;
       }
 
       .instagram {
-        left: calc(54% + 130px); 
+        left: calc(50% + 110px); 
       }
 
       .tiktok {
-        left: calc(54% + 250px); 
+        left: calc(50% + 210px); 
       }
-
-     
     }
 
+    /* Form styles */
     .form-overlay {
-  position: absolute;
-  top: 62.5%; 
-  left:40%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  border-radius: 10px;
-}
+      position: absolute;
+      top: 62.5%; 
+      left: 40%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      border-radius: 10px;
+    }
 
-.form-overlay input {
-  height: 8px;
-  width: 130%;
-  padding: 10px;
-  border-radius: 50px;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-  font-size: 16px;
-  direction: rtl;
-  text-align: center;
-  background-color: #ecd4d4 ;
-  border: none;
-}
+    .form-overlay input {
+      height: 8px;
+      width: 130%;
+      padding: 10px;
+      border-radius: 50px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 16px;
+      direction: rtl;
+      text-align: center;
+      background-color: #ecd4d4;
+      border: none;
+    }
 
-.form-overlay button {
-  margin-left: 40%;
-  width: 50%;
-  padding: 5px;
-  background-color: #E81C37;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  font-size: 16px;
+    .form-overlay button {
+      margin-left: 40%;
+      width: 50%;
+      padding: 5px;
+      background-color: #E81C37;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+    }
 
-}
+    button:hover{
+      background-color: white;
+      border: solid #E81C37 3px;
+      color: black;
+    }
